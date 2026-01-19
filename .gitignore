@@ -1,4 +1,5 @@
-polls/
+polls/*
+!polls/secrets-template.toml
 polls_data.json
 .streamlit/secrets.toml
 __pycache__/
