@@ -74,12 +74,16 @@ def get_base_url():
 
 query_params = st.query_params
 vote_poll_id = query_params.get("vote", None)
+results_poll_id = query_params.get("results", None)
 
 with st.sidebar:
     st.title("Live Polls")
     if vote_poll_id and vote_poll_id in st.session_state.polls:
         page = "Vote"
         st.info(f"Voting on: {st.session_state.polls[vote_poll_id]['title']}")
+    elif results_poll_id and results_poll_id in st.session_state.polls:
+        page = "Results"
+        st.info(f"Results: {st.session_state.polls[results_poll_id]['title']}")
     else:
         page = st.radio("Navigation", ["Admin", "Vote", "Results", "Export"])
     st.divider()
@@ -187,16 +191,23 @@ elif page == "Results":
         st.warning("No polls")
         st.stop()
     
-    col1, col2 = st.columns([3, 1])
-    with col1:
-        opts = {f"{p['title']} ({pid})": pid for pid, p in st.session_state.polls.items()}
-        selected = st.selectbox("Poll:", list(opts.keys()))
-        poll_id = opts[selected]
+    poll_id = results_poll_id if results_poll_id else None
     
-    with col2:
-        auto = st.checkbox("Auto-refresh", value=True)
-        if auto:
-            st.caption("2s refresh")
+    if not poll_id or poll_id not in st.session_state.polls:
+        if results_poll_id:
+            st.error(f"Poll '{results_poll_id}' not found")
+            st.stop()
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            opts = {f"{p['title']} ({pid})": pid for pid, p in st.session_state.polls.items()}
+            selected = st.selectbox("Poll:", list(opts.keys()))
+            poll_id = opts[selected]
+        with col2:
+            auto = st.checkbox("Auto-refresh", value=True)
+            if auto:
+                st.caption("2s refresh")
+    else:
+        auto = True
     
     poll = st.session_state.polls[poll_id]
     responses = st.session_state.responses.get(poll_id, [])
