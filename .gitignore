@@ -1,3 +1,4 @@
+polls/
 polls_data.json
 __pycache__/
 *.pyc

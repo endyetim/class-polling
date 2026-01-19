@@ -1,0 +1,12 @@
+course: "PH3130 Data Analysis"
+semester: "Spring 2026"
+week: 1
+
+polls:
+  example_poll:
+    title: "Example Poll"
+    question: "This is an example - create your own in polls/ directory"
+    options:
+      - "A. Option 1"
+      - "B. Option 2"
+      - "C. Option 3"

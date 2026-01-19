@@ -15,9 +15,12 @@ Access at `http://localhost:8501`
 
 ### Create Polls from YAML
 
-1. Edit `polls/{course}-{semester}/week{N}.yaml`
-2. Run `python src/import_polls.py`
-3. Restart app
+1. Copy example: `cp -r polls-example/* polls/`
+2. Edit `polls/{course}-{semester}/week{N}.yaml`
+3. Run `python src/import_polls.py`
+4. Restart app
+
+*Note: `polls/` directory is gitignored - your poll content stays private*
 
 ### Create Polls via UI
 
@@ -52,10 +55,10 @@ streamlit run src/app.py --server.port=8501
 ├── src/
 │   ├── app.py           # Main Streamlit app
 │   └── import_polls.py  # YAML import script
-├── polls/
-│   ├── ph3130-sp2026/   # Data Analysis polls
-│   ├── ph3120-sp2026/   # Epidemiology polls
-│   └── archived/        # Past semesters
+├── polls/               # Your polls (gitignored)
+│   ├── ph3130-sp2026/
+│   └── ph3120-sp2026/
+├── polls-example/       # Example format
 ├── requirements.txt
 └── README.md
 ```
