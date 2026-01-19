@@ -7,7 +7,7 @@ from datetime import datetime
 import plotly.express as px
 
 st.set_page_config(
-    page_title="PH3130 Live Polls",
+    page_title="Live Polls",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -53,7 +53,7 @@ def get_base_url():
         return "http://localhost:8501"
 
 with st.sidebar:
-    st.title("📊 PH3130 Polls")
+    st.title("📊 Live Polls")
     page = st.radio("Navigation", ["Admin", "Vote", "Results", "Export"])
     st.divider()
     st.caption(f"Polls: {len(st.session_state.polls)}")
@@ -231,4 +231,4 @@ elif page == "Export":
                 )
 
 st.divider()
-st.caption("PH3130 Live Polling | Data Analysis for Public Health")
+st.caption("Live Polling System")
