@@ -1,3 +1,7 @@
+course: "PH3130 Data Analysis"
+semester: "Spring 2026"
+week: 1
+
 polls:
   anxiety:
     title: "Statistics Anxiety"
@@ -12,15 +16,15 @@ polls:
     title: "Crime Perception"
     question: "In the last 30 years, has U.S. violent crime:"
     options:
-      - "Increased"
-      - "Decreased"
-      - "Stayed the same"
+      - "A. Increased"
+      - "B. Decreased"
+      - "C. Stayed the same"
     
   causation:
     title: "Causation Question"
     question: "Does the PURE study prove saturated fat causes longer life?"
     options:
-      - "Yes, definitely"
-      - "No, definitely not"
-      - "Maybe - we need more information"
-      - "The study proves causation"
+      - "A. Yes, definitely"
+      - "B. No, definitely not"
+      - "C. Maybe - need more info"
+      - "D. Study proves causation"

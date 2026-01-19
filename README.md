@@ -15,7 +15,7 @@ Access at `http://localhost:8501`
 
 ### Create Polls from YAML
 
-1. Edit `config/polls.yaml`
+1. Edit `polls/{course}-{semester}/week{N}.yaml`
 2. Run `python src/import_polls.py`
 3. Restart app
 
@@ -52,8 +52,10 @@ streamlit run src/app.py --server.port=8501
 ├── src/
 │   ├── app.py           # Main Streamlit app
 │   └── import_polls.py  # YAML import script
-├── config/
-│   └── polls.yaml       # Poll definitions
-├── requirements.txt     # Dependencies
+├── polls/
+│   ├── ph3130-sp2026/   # Data Analysis polls
+│   ├── ph3120-sp2026/   # Epidemiology polls
+│   └── archived/        # Past semesters
+├── requirements.txt
 └── README.md
 ```

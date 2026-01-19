@@ -1,0 +1,13 @@
+course: "PH3120 Epidemiology"
+semester: "Spring 2026"
+week: 1
+
+polls:
+  epi_definition:
+    title: "What is Epidemiology?"
+    question: "Which best describes epidemiology?"
+    options:
+      - "A. Study of diseases only"
+      - "B. Study of health patterns in populations"
+      - "C. Clinical diagnosis"
+      - "D. Laboratory research"
