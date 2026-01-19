@@ -72,9 +72,16 @@ def get_base_url():
         pass
     return "http://localhost:8501"
 
+query_params = st.query_params
+vote_poll_id = query_params.get("vote", None)
+
 with st.sidebar:
     st.title("📊 Live Polls")
-    page = st.radio("Navigation", ["Admin", "Vote", "Results", "Export"])
+    if vote_poll_id and vote_poll_id in st.session_state.polls:
+        page = "Vote"
+        st.info(f"Voting on: {st.session_state.polls[vote_poll_id]['title']}")
+    else:
+        page = st.radio("Navigation", ["Admin", "Vote", "Results", "Export"])
     st.divider()
     st.caption(f"Polls: {len(st.session_state.polls)}")
     if st.session_state.polls:
@@ -143,12 +150,14 @@ if page == "Admin":
 elif page == "Vote":
     st.title("🗳️ Vote")
     
-    query_params = st.query_params
-    poll_id = query_params.get("vote", None)
+    poll_id = vote_poll_id if vote_poll_id else None
     
     if not poll_id or poll_id not in st.session_state.polls:
         if not st.session_state.polls:
             st.warning("No polls available")
+            st.stop()
+        if vote_poll_id:
+            st.error(f"Poll '{vote_poll_id}' not found")
             st.stop()
         opts = {f"{p['title']} ({pid})": pid for pid, p in st.session_state.polls.items()}
         selected = st.selectbox("Select poll:", list(opts.keys()))
