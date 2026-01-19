@@ -34,7 +34,25 @@ def load_data():
     except FileNotFoundError:
         pass
 
+def load_secrets():
+    if 'polls' in st.secrets:
+        for poll_id, poll_data in st.secrets['polls'].items():
+            if poll_id not in st.session_state.polls:
+                st.session_state.polls[poll_id] = {
+                    'id': poll_id,
+                    'title': poll_data.get('title', poll_id),
+                    'question': poll_data.get('question', ''),
+                    'options': list(poll_data.get('options', [])),
+                    'course': poll_data.get('course', ''),
+                    'week': poll_data.get('week', ''),
+                    'created': datetime.now().isoformat(),
+                    'active': True
+                }
+                if poll_id not in st.session_state.responses:
+                    st.session_state.responses[poll_id] = []
+
 load_data()
+load_secrets()
 
 def generate_qr(url):
     qr = qrcode.QRCode(version=1, box_size=10, border=4)
