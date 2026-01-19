@@ -1,21 +1,21 @@
 # Poll Examples
 
-This directory contains example poll files showing the format.
+Example poll file format.
 
-**Your actual polls should go in `polls/` directory (gitignored).**
+**Your actual polls go in `polls/` directory (gitignored).**
 
 ## Setup
 
-1. Copy this structure to `polls/`:
+1. Copy structure:
 ```bash
 cp -r polls-example/* polls/
 ```
 
-2. Edit poll files in `polls/` with your actual questions
+2. Edit `polls/course-semester/week1.yaml` with your questions
 
 3. Import:
 ```bash
 python src/import_polls.py
 ```
 
-Your poll content stays private (not in GitHub).
+Poll content stays private.

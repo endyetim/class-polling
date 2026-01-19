@@ -56,8 +56,8 @@ streamlit run src/app.py --server.port=8501
 │   ├── app.py           # Main Streamlit app
 │   └── import_polls.py  # YAML import script
 ├── polls/               # Your polls (gitignored)
-│   ├── ph3130-sp2026/
-│   └── ph3120-sp2026/
+│   ├── course1-semester/
+│   └── course2-semester/
 ├── polls-example/       # Example format
 ├── requirements.txt
 └── README.md
