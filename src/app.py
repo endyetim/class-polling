@@ -76,7 +76,7 @@ query_params = st.query_params
 vote_poll_id = query_params.get("vote", None)
 
 with st.sidebar:
-    st.title("📊 Live Polls")
+    st.title("Live Polls")
     if vote_poll_id and vote_poll_id in st.session_state.polls:
         page = "Vote"
         st.info(f"Voting on: {st.session_state.polls[vote_poll_id]['title']}")
@@ -89,7 +89,7 @@ with st.sidebar:
         st.caption(f"Responses: {total}")
 
 if page == "Admin":
-    st.title("🎛️ Admin Panel")
+    st.title("Admin Panel")
     
     with st.expander("➕ Create Poll", expanded=True):
         with st.form("new_poll"):
@@ -111,11 +111,11 @@ if page == "Admin":
                     }
                     st.session_state.responses[poll_id] = []
                     save_data()
-                    st.success(f"✅ Created {poll_id}")
+                    st.success(f"Created {poll_id}")
                     st.rerun()
     
     st.divider()
-    st.subheader("📋 Polls")
+    st.subheader("Polls")
     
     for poll_id, poll in st.session_state.polls.items():
         with st.expander(f"{poll['title']} ({poll_id})"):
@@ -126,7 +126,7 @@ if page == "Admin":
                 for opt in poll['options']:
                     st.markdown(f"- {opt}")
                 count = len(st.session_state.responses.get(poll_id, []))
-                st.caption(f"📊 {count} responses")
+                st.caption(f"{count} responses")
             
             with col2:
                 if st.button("QR", key=f"qr_{poll_id}"):
@@ -148,7 +148,7 @@ if page == "Admin":
                     st.rerun()
 
 elif page == "Vote":
-    st.title("🗳️ Vote")
+    st.title("Vote")
     
     poll_id = vote_poll_id if vote_poll_id else None
     
@@ -176,13 +176,12 @@ elif page == "Vote":
                     'timestamp': datetime.now().isoformat()
                 })
                 save_data()
-                st.success("✅ Vote recorded")
-                st.balloons()
+                st.success("Vote recorded")
             else:
                 st.error("Select an option")
 
 elif page == "Results":
-    st.title("📊 Results")
+    st.title("Results")
     
     if not st.session_state.polls:
         st.warning("No polls")
@@ -234,7 +233,7 @@ elif page == "Results":
         st.rerun()
 
 elif page == "Export":
-    st.title("💾 Export")
+    st.title("Export")
     
     if not st.session_state.polls:
         st.warning("No data")
