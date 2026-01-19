@@ -66,9 +66,11 @@ def generate_qr(url):
 
 def get_base_url():
     try:
-        return st.get_option("browser.serverAddress") or "http://localhost:8501"
+        if 'STREAMLIT_SHARING_MODE' in st.secrets or st.runtime.exists():
+            return "https://class-polling.streamlit.app"
     except:
-        return "http://localhost:8501"
+        pass
+    return "http://localhost:8501"
 
 with st.sidebar:
     st.title("📊 Live Polls")
